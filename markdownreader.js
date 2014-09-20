@@ -30,7 +30,7 @@
 	link.href = chrome.extension.getURL('prettify.css');
 	document.head.appendChild(link);
 	document.body.innerHTML = '<div id="markdown-container"></div><div id="markdown-outline"></div><div id="markdown-backTop" onclick="window.scrollTo(0,0);"></div>';
-	window.onresize = showOutline;
+	window.onresize = tryToShowOutline;
 
 	var markdownConverter = new Showdown.converter();
 	var lastText = null;
@@ -81,17 +81,19 @@
 		var outline = document.getElementById('markdown-outline');
 		if(arrOutline.length > 2){
 			outline.innerHTML = arrOutline.join('');
-			showOutline();
+			tryToShowOutline();
 		}
 		else outline.style.display = 'none'; 
 	}
 
-	function showOutline() {
-		var outline = document.getElementById('markdown-outline');
-		var markdownContainer = document.getElementById('markdown-container');
-		outline.style.left = markdownContainer.offsetLeft + markdownContainer.offsetWidth + 10 + 'px';
-		outline.style.maxHeight = document.body.clientHeight - 30;
-		outline.style.display = 'block';
+	function tryToShowOutline() {
+        if (options.outline) {
+            var outline = document.getElementById('markdown-outline');
+            var markdownContainer = document.getElementById('markdown-container');
+            outline.style.left = markdownContainer.offsetLeft + markdownContainer.offsetWidth + 10 + 'px';
+            outline.style.maxHeight = document.body.clientHeight - 30;
+            outline.style.display = 'block';
+        }
 	}
 
 	var xmlhttp = new XMLHttpRequest();

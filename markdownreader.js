@@ -3,10 +3,27 @@
 	//忽略HTML代码
 	if (document.doctype) return;
 
+    // Set up some defaults.
+    var options = {
+        style: 'markdownreader.css'
+    };
+
+    // Get any options passed into the querystring.
+    if (window.location.search) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        vars.forEach(function(item) {
+            var pair = item.split("=");
+            options[pair[0]] = pair[1];
+        });
+    }
+
 	var link = document.createElement('link');
 	link.rel = 'stylesheet';
-	link.href = chrome.extension.getURL('markdownreader.css');
+	link.href = chrome.extension.getURL(options.style);
 	document.head.appendChild(link);
+    console.log(window.location);
+    console.log('here is osmething');
 
 	link = document.createElement('link');
 	link.rel = 'stylesheet';

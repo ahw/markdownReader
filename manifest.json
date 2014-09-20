@@ -11,11 +11,12 @@
 	"permissions": ["tabs", "\u003Call_urls\u003E"],
 	"content_scripts": [{
 		"js": ["prettify.js", "showdown.js", "markdownreader.js"],
-		"matches": ["*://*/*.md", "file://*/*.md", "*://*/*.markdown", "file://*/*.markdown", "*://*/*.mdown", "file://*/*.mdown", "*://*/*.mkdn", "file://*/*.mkdn", "*://*/*.mkd", "file://*/*.mkd", "*://*/*.text", "file://*/*.text", "*://*/*.mdtext", "file://*/*.mdtext", "*://*/*.mdtxt", "file://*/*.mdtxt"],
+		"matches": ["*://*/*.md*", "file://*/*.md*", "*://*/*.markdown*", "file://*/*.markdown*"],
 		"run_at": "document_end"
 	}],
 	"web_accessible_resources": [
 		"markdownreader.css",
+        "nytimes.css",
 		"prettify.css",
 		"images/backtop.gif"
 	]
